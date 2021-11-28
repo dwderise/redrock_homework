@@ -1,0 +1,109 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="test1.css">
+</head>
+<body>
+    <div class="carousel">
+        <div class="imgBox">
+            <ul>
+                <li class="list1"><img src="Inkedimages1_LI.jpg" alt=""></li>
+                <li class="list2"><img src="Inkedimages2_LI.jpg" alt=""></li>
+                <li class="list3"><img src="Inkedimages3_LI.jpg" alt=""></li>
+                <li class="list4"><img src="Inkedimages4_LI.jpg" alt=""></li>
+                <li class="list5"><img src="Inkedimages5_LI.jpg" alt=""></li>
+                <li class="list6"><img src="Inkedimages6_LI.jpg" alt=""></li>
+            </ul>
+        </div>
+        <div class="lineBar">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <script>
+        var aLi = document.querySelectorAll("li");
+        var aSpan = document.querySelectorAll("span");
+        var oImgbox = document.querySelector(".imgBox");
+        var aName = []; //存放元素的名字
+        var index = 0;//初始状态下第几个按钮变色
+        setColor();
+        for(var item of aLi){
+            //console.log(item.classList[0]);
+            aName.push(item.classList[0]);
+     
+        }
+     
+        function nextPic() { //向下翻页
+            aName.unshift(aName[5]); //把数组最后一个值复制并插入到数组第一个位置
+            aName.pop();  //删除数组的最后一个元素
+            for (var i=0,len=aLi.length;i<len;i++){
+                //预存数组长度，减少循环语句的性能消耗
+                aLi[i].setAttribute("class",aName[i]);
+                //重新给每个元素设置新的名字
+            }
+            index++;
+            if(index>5)index=0;
+            setColor();
+        }
+        function prePic() {
+            aName.push(aName[0]); //把数组第一个值复制并插入到数组最后一个位置
+            aName.shift();//删除第一个
+            for (var i=0,len=aLi.length;i<len;i++){
+                //预存数组长度，减少循环语句的性能消耗
+                aLi[i].setAttribute("class",aName[i]);
+                //重新给每个元素设置新的名字
+            }
+            index--;
+            if(index<0)index=5;
+            setColor();
+        }
+        
+        function setColor() {
+            for(var item of aSpan){
+                item.style.backgroundColor="#ccc";
+            }
+            aSpan[index].style.backgroundColor = "#45c17c";
+     
+        }
+     
+        var eleList=["list1","list3"];
+        var eleAct=["prePic","nextPic"];
+     
+     
+        oImgbox.addEventListener("click",function (ev) {
+            ev=ev||window.event;//兼容性处理
+            console.log(ev.target.parentNode);//鼠标事件
+            var ele = ev.target.parentNode;//点中的li元素
+            var eleName=ele.classList[0];//获取元素的名字
+     
+            /*
+            switch (ele.classList[0]){
+                case "list1":
+                    prePic();//向上翻页
+                    break;
+                case "list3":
+                    nextPic();//向下翻页
+                    break;
+            }
+            */
+            window[eleAct[eleList.indexOf(eleName)]]();
+        })
+      
+
+
+
+
+
+
+    </script>
+    
+</body>
+</html>
