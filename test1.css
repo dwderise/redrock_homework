@@ -1,0 +1,65 @@
+.carousel{
+    width: 1200px;
+    height: 367px;/*336+14*2+3*/
+    margin: 80px auto 0;
+}
+.imgBox{
+    width: 1200px;
+    height: 336px;
+}
+.lineBar{
+    width: 1200px;
+    height: 31px;
+    text-align: center;
+}
+ul{
+    position: relative;
+    padding-left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;/*隐藏超出规定范围的内容*/
+}
+li{
+    position: absolute;
+    list-style: none;
+    /* width: 730px; */
+    height: 336px;
+    transition: 0.5s;/*过渡时间：0.5s*/
+}
+.list1/*标记为6的图，即左侧*/{
+    z-index: 1;
+    transform: scale(0.81); 
+    transform-origin: 0% 100%;/*定义视图被置于X,y轴的何处 */
+}
+.list2/*标记为1的图，即中间*/{
+    z-index: 2;
+    transform: translateX(235px);
+
+}
+.list3/*标记为2的图，即右侧*/{
+    z-index: 1;
+    transform: translateX(730px) scale(0.81); 
+    transform-origin: 100% 100%; 
+}
+.list4{
+    transform: translateX(965px) scale(0.81);
+    transform-origin: 100% 100%;
+}
+.list5{
+    transform: translateX(1200px) scale(0.81);
+    transform-origin: 100% 100%;
+}
+.list6{
+    transform: translateX(1435px) scale(0.81);
+    transform-origin: 100% 100%;
+}
+img{
+    display: block; 
+}
+
+span{
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    background-color: #ccc;
+}
